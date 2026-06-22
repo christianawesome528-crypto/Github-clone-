@@ -1,0 +1,4 @@
+/ /index.html 200
+/login/* /profile.html 200
+/repo/* /repo.html 200
+/* /404.html 404
