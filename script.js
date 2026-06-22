@@ -202,3 +202,20 @@ document.getElementById('back-to-profile').addEventListener('click', () => {
   document.getElementById('overview-tab').classList.add('active');
   document.querySelector('[data-tab="overview"]').classList.add('active');
 });
+// Make header search work on profile + repo pages
+const headerSearch = document.getElementById('header-search');
+if (headerSearch) {
+  headerSearch.addEventListener('keypress', async (e) => {
+    if (e.key === 'Enter') {
+      const username = e.target.value.trim();
+      if (!username) return;
+      try {
+        const res = await fetch(`${API}/users/${username}`);
+        if (!res.ok) throw new Error();
+        window.location.href = `/login/${username}`;
+      } catch {
+        alert('User not found');
+      }
+    }
+  });
+}
